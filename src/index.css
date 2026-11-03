@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-paper: #faf8f5;
+  --color-mist: #f2efea;
+  --color-stone: #e9e5df;
+  --color-line: #e4dfd8;
+  --color-ink: #141417;
+  --color-ink-2: #3b3b42;
+  --color-ink-3: #66666f;
+  --color-accent: #e0522c;
+  --color-accent-soft: #fbe6de;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shadow-soft: 0 1px 2px rgb(20 20 23 / 0.04), 0 8px 24px -12px rgb(20 20 23 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(20 20 23 / 0.04), 0 24px 48px -20px rgb(20 20 23 / 0.22);
+  --shadow-device: 0 1px 1px rgb(20 20 23 / 0.06), 0 30px 60px -24px rgb(20 20 23 / 0.35);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1240px] px-5 sm:px-8 lg:px-10;
+  }
+  .label {
+    @apply font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-ink-3;
+  }
+  .field {
+    @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] text-ink outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-ink-3/70 hover:border-ink/25 focus:border-ink focus:ring-4 focus:ring-ink/5;
+  }
+}
+
+/* Subtle paper grain used on the hero stage */
+.dot-grid {
+  background-image: radial-gradient(rgb(20 20 23 / 0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
